@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import { Wrench, Bike, Droplets, Disc, BatteryCharging, ArrowRight, ArrowLeft } from "lucide-react";
+import { Wrench, Bike, Droplets, Disc, BatteryCharging } from "lucide-react";
 import { FadeIn } from "@/components/animations/FadeIn";
 
 const services = [
@@ -11,16 +10,6 @@ const services = [
 ];
 
 export function Services() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const { current } = scrollRef;
-      const scrollAmount = direction === "left" ? -400 : 400;
-      current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
-  };
-
   return (
     <section id="services" className="py-24 bg-zinc-950/50 border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,57 +22,44 @@ export function Services() {
               Book top-rated professionals for any vehicle need, directly from our platform.
             </p>
           </FadeIn>
-          
-          <FadeIn delay={0.2} className="flex gap-4">
-            <button 
-              onClick={() => scroll("left")}
-              className="w-12 h-12 rounded-full border border-white/10 bg-black flex items-center justify-center text-white hover:border-primary hover:text-primary transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-            <button 
-              onClick={() => scroll("right")}
-              className="w-12 h-12 rounded-full border border-white/10 bg-black flex items-center justify-center text-white hover:border-primary hover:text-primary transition-colors box-glow"
-            >
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </FadeIn>
         </div>
 
-        <div 
-          ref={scrollRef}
-          className="flex overflow-x-auto hide-scrollbar gap-6 pb-8 -mx-4 px-4 sm:mx-0 sm:px-0"
-        >
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <FadeIn 
-                key={service.id} 
-                delay={index * 0.1} 
-                className="min-w-[280px] sm:min-w-[320px] shrink-0"
-              >
-                <div className="h-full group relative bg-black border border-white/10 rounded-2xl p-8 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 overflow-hidden">
-                  {/* Hover gradient background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  
-                  <div className="w-14 h-14 rounded-xl bg-zinc-900 border border-white/5 flex items-center justify-center mb-6 group-hover:border-primary/50 group-hover:bg-primary/10 transition-colors">
-                    <Icon className="w-7 h-7 text-white group-hover:text-primary transition-colors" />
+        <div className="flex flex-col lg:flex-row items-stretch justify-between gap-12">
+          <div className="w-full lg:w-1/2">
+            <FadeIn className="h-full">
+              <div className="relative group h-full">
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-transparent rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                <div className="relative rounded-2xl overflow-hidden border border-white/10 h-full min-h-[400px]">
+                  <img 
+                    src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1200&auto=format&fit=crop" 
+                    alt="Professional Car Maintenance" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <p className="text-sm font-semibold text-white/90">
+                      Expert mechanics at work ensuring your vehicle's peak performance.
+                    </p>
                   </div>
-                  
-                  <h3 className="text-xl font-display font-semibold text-white mb-3 group-hover:text-primary transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-6">
-                    {service.desc}
-                  </p>
-                  
-                  <button className="flex items-center text-sm font-semibold text-white group-hover:text-primary transition-colors mt-auto">
-                    Book Now <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </button>
                 </div>
-              </FadeIn>
-            );
-          })}
+              </div>
+            </FadeIn>
+          </div>
+          <div className="w-full lg:w-1/2">
+            <div className="flex flex-col gap-4 h-full">
+              {services.map((service, index) => (
+                <FadeIn key={service.id} delay={0.1 * index} className="flex-1">
+                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all group flex flex-col justify-center h-full">
+                    <div className="flex items-center gap-4 mb-2">
+                      <service.icon className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+                      <h4 className="text-lg font-semibold text-white">{service.title}</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed pl-10">{service.desc}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

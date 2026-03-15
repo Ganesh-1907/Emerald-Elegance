@@ -1,6 +1,4 @@
-import React from "react";
 import { FadeIn } from "@/components/animations/FadeIn";
-import { Button } from "@/components/ui/button";
 import { ShoppingBag, ChevronRight } from "lucide-react";
 
 const categories = [
@@ -39,7 +37,7 @@ export function Products() {
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 z-20 p-6 flex flex-col justify-end bg-gradient-to-t from-black via-black/50 to-transparent">
-                  <p className="text-primary font-medium mb-1 text-sm">{cat.items}</p>
+                  {/* <p className="text-primary font-medium mb-1 text-sm">{cat.items}</p> */}
                   <h3 className="text-xl font-display font-bold text-white mb-2 group-hover:text-glow transition-all">{cat.name}</h3>
                   <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 flex items-center text-sm font-semibold text-white">
                     Explore Category <ChevronRight className="w-4 h-4 ml-1" />
@@ -50,11 +48,11 @@ export function Products() {
           ))}
         </div>
 
-        <FadeIn delay={0.4} className="mt-12 text-center">
+        {/* <FadeIn delay={0.4} className="mt-12 text-center">
           <Button variant="outline" size="lg" onClick={() => alert("View All Products")}>
             View All Products
           </Button>
-        </FadeIn>
+        </FadeIn> */}
       </div>
     </section>
   );

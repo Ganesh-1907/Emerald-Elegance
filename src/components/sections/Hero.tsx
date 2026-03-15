@@ -1,4 +1,3 @@
-import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight, Zap } from "lucide-react";
 import { FadeIn } from "@/components/animations/FadeIn";

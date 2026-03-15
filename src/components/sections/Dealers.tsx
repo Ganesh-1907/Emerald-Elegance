@@ -1,4 +1,3 @@
-import React from "react";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { Store, CheckCircle2 } from "lucide-react";
 

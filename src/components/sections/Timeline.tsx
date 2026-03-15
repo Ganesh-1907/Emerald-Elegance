@@ -1,4 +1,3 @@
-import React from "react";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { Button } from "@/components/ui/button";
 

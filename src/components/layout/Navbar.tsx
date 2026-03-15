@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Menu, X, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -57,9 +57,9 @@ export function Navbar() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" className="hidden lg:inline-flex" onClick={() => alert("Login clicked")}>
+            {/* <Button variant="ghost" className="hidden lg:inline-flex" onClick={() => alert("Login clicked")}>
               Log in
-            </Button>
+            </Button> */}
             <Button onClick={() => alert("Download clicked")}>
               Download App
             </Button>
@@ -96,9 +96,9 @@ export function Navbar() {
                 </a>
               ))}
               <div className="w-full h-px bg-white/10 my-2" />
-              <Button variant="outline" className="w-full justify-center" onClick={() => alert("Login clicked")}>
+              {/* <Button variant="outline" className="w-full justify-center" onClick={() => alert("Login clicked")}>
                 Log in
-              </Button>
+              </Button> */}
               <Button className="w-full justify-center" onClick={() => alert("Download clicked")}>
                 Download App
               </Button>

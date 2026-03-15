@@ -1,4 +1,4 @@
-import React from "react";
+/// <reference types="vite/client" />
 import { FadeIn } from "@/components/animations/FadeIn";
 import { Button } from "@/components/ui/button";
 import { Apple, Play } from "lucide-react";
@@ -22,18 +22,18 @@ export function AppPromo() {
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                <Button size="lg" className="w-full sm:w-auto h-16 px-8 gap-3" onClick={() => alert("App Store")}>
+                {/* <Button size="lg" className="w-full sm:w-auto h-16 px-8 gap-3" onClick={() => alert("App Store")}>
                   <Apple className="w-6 h-6" />
                   <div className="flex flex-col items-start">
                     <span className="text-[10px] leading-none font-normal">Download on the</span>
                     <span className="text-base leading-none">App Store</span>
                   </div>
-                </Button>
+                </Button> */}
                 <Button variant="outline" size="lg" className="w-full sm:w-auto h-16 px-8 gap-3" onClick={() => alert("Play Store")}>
                   <Play className="w-6 h-6 text-primary" />
                   <div className="flex flex-col items-start">
                     <span className="text-[10px] leading-none font-normal text-white">GET IT ON</span>
-                    <span className="text-base leading-none text-white">Google Play</span>
+                    <span className="text-base leading-none text-white">Google Play Store</span>
                   </div>
                 </Button>
               </div>

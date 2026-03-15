@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "wouter";
 import { Car, Twitter, Instagram, Facebook, Youtube, Mail, MapPin, Phone } from "lucide-react";
 
@@ -86,10 +85,10 @@ export function Footer() {
           <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} CarConnect. All rights reserved.
           </p>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          {/* <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <span>Designed with precision</span>
             <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
