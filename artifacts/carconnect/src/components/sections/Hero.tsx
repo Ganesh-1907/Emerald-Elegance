@@ -1,0 +1,301 @@
+import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { ChevronRight, Zap } from "lucide-react";
+import { FadeIn } from "@/components/animations/FadeIn";
+
+function AnimatedCar() {
+  const GREEN = "#4ade80";
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center select-none">
+      {/* Rotating outer halos */}
+      <motion.div
+        className="absolute"
+        style={{ width: "90%", aspectRatio: "1" }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      >
+        <svg viewBox="0 0 400 400" className="w-full h-full opacity-20">
+          <ellipse cx="200" cy="200" rx="195" ry="80" fill="none" stroke={GREEN} strokeWidth="1" strokeDasharray="8 6" />
+        </svg>
+      </motion.div>
+      <motion.div
+        className="absolute"
+        style={{ width: "70%", aspectRatio: "1" }}
+        animate={{ rotate: -360 }}
+        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+      >
+        <svg viewBox="0 0 400 400" className="w-full h-full opacity-15">
+          <ellipse cx="200" cy="200" rx="195" ry="65" fill="none" stroke={GREEN} strokeWidth="1" strokeDasharray="4 10" />
+        </svg>
+      </motion.div>
+
+      {/* Glowing background circle */}
+      <div
+        className="absolute rounded-full"
+        style={{
+          width: "55%",
+          aspectRatio: "1",
+          background: `radial-gradient(circle, ${GREEN}18 0%, transparent 70%)`,
+          filter: "blur(30px)",
+        }}
+      />
+
+      {/* The main SVG car */}
+      <motion.div
+        className="relative z-10"
+        style={{ width: "95%", maxWidth: 560 }}
+        animate={{ y: [-10, 10, -10] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <svg
+          viewBox="0 0 560 220"
+          className="w-full h-auto"
+          style={{ filter: `drop-shadow(0 0 14px ${GREEN}80) drop-shadow(0 0 30px ${GREEN}40)` }}
+        >
+          {/* === CAR BODY === */}
+          {/* Lower body */}
+          <path
+            d="M60 148 Q60 160 75 160 L485 160 Q500 160 500 148 L500 120 L60 120 Z"
+            fill={`${GREEN}08`}
+            stroke={GREEN}
+            strokeWidth="1.5"
+          />
+          {/* Upper cabin */}
+          <path
+            d="M160 120 Q175 80 200 72 L380 72 Q415 72 420 120 Z"
+            fill={`${GREEN}10`}
+            stroke={GREEN}
+            strokeWidth="1.5"
+          />
+          {/* Front hood */}
+          <path
+            d="M420 120 L420 108 Q460 100 500 120 Z"
+            fill={`${GREEN}08`}
+            stroke={GREEN}
+            strokeWidth="1.5"
+          />
+          {/* Rear trunk */}
+          <path
+            d="M160 120 L160 108 Q120 100 60 120 Z"
+            fill={`${GREEN}08`}
+            stroke={GREEN}
+            strokeWidth="1.5"
+          />
+
+          {/* === WINDSHIELD & WINDOWS === */}
+          {/* Front windshield */}
+          <path
+            d="M380 72 Q410 72 420 108 L370 108 Z"
+            fill={`${GREEN}14`}
+            stroke={GREEN}
+            strokeWidth="1"
+          />
+          {/* Front side window */}
+          <rect x="310" y="76" width="58" height="44" rx="3" fill={`${GREEN}14`} stroke={GREEN} strokeWidth="1" />
+          {/* Rear side window */}
+          <rect x="200" y="74" width="104" height="46" rx="3" fill={`${GREEN}14`} stroke={GREEN} strokeWidth="1" />
+          {/* Rear windshield */}
+          <path
+            d="M160 108 L170 108 L200 74 L200 108 Z"
+            fill={`${GREEN}14`}
+            stroke={GREEN}
+            strokeWidth="1"
+          />
+
+          {/* === BODY PANEL LINES === */}
+          <line x1="60" y1="132" x2="500" y2="132" stroke={GREEN} strokeWidth="0.8" opacity="0.5" />
+          <line x1="160" y1="120" x2="420" y2="120" stroke={GREEN} strokeWidth="0.8" opacity="0.5" />
+
+          {/* === HEADLIGHTS === */}
+          <path d="M496 122 L510 126 L510 136 L496 138 Z" fill={`${GREEN}30`} stroke={GREEN} strokeWidth="1.5" />
+          <motion.path
+            d="M510 126 L540 118 L540 146 L510 136 Z"
+            fill={`${GREEN}15`}
+            stroke={GREEN}
+            strokeWidth="0.8"
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          {/* === TAILLIGHTS === */}
+          <rect x="50" y="124" width="12" height="18" rx="2" fill={`${GREEN}25`} stroke={GREEN} strokeWidth="1.5" />
+          <motion.path
+            d="M50 128 L20 120 L20 148 L50 140 Z"
+            fill={`${GREEN}10`}
+            stroke={GREEN}
+            strokeWidth="0.8"
+            animate={{ opacity: [0.3, 0.8, 0.3] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          {/* === WHEELS === */}
+          {/* Front wheel */}
+          <circle cx="410" cy="160" r="32" fill={`${GREEN}08`} stroke={GREEN} strokeWidth="1.8" />
+          <circle cx="410" cy="160" r="20" fill={`${GREEN}05`} stroke={GREEN} strokeWidth="1.2" />
+          <circle cx="410" cy="160" r="5" fill={`${GREEN}30`} stroke={GREEN} strokeWidth="1.5" />
+          {/* Front wheel spokes */}
+          {[0, 60, 120, 180, 240, 300].map((deg) => (
+            <line
+              key={deg}
+              x1={410 + 5 * Math.cos((deg * Math.PI) / 180)}
+              y1={160 + 5 * Math.sin((deg * Math.PI) / 180)}
+              x2={410 + 20 * Math.cos((deg * Math.PI) / 180)}
+              y2={160 + 20 * Math.sin((deg * Math.PI) / 180)}
+              stroke={GREEN}
+              strokeWidth="1.3"
+            />
+          ))}
+
+          {/* Rear wheel */}
+          <circle cx="150" cy="160" r="32" fill={`${GREEN}08`} stroke={GREEN} strokeWidth="1.8" />
+          <circle cx="150" cy="160" r="20" fill={`${GREEN}05`} stroke={GREEN} strokeWidth="1.2" />
+          <circle cx="150" cy="160" r="5" fill={`${GREEN}30`} stroke={GREEN} strokeWidth="1.5" />
+          {[0, 60, 120, 180, 240, 300].map((deg) => (
+            <line
+              key={deg}
+              x1={150 + 5 * Math.cos((deg * Math.PI) / 180)}
+              y1={160 + 5 * Math.sin((deg * Math.PI) / 180)}
+              x2={150 + 20 * Math.cos((deg * Math.PI) / 180)}
+              y2={160 + 20 * Math.sin((deg * Math.PI) / 180)}
+              stroke={GREEN}
+              strokeWidth="1.3"
+            />
+          ))}
+
+          {/* === GROUND SHADOW === */}
+          <ellipse cx="280" cy="198" rx="210" ry="10" fill={`${GREEN}12`} />
+
+          {/* === UNDERCARRIAGE === */}
+          <rect x="85" y="156" width="390" height="8" rx="3" fill={`${GREEN}06`} stroke={GREEN} strokeWidth="1" opacity="0.6" />
+        </svg>
+      </motion.div>
+
+      {/* Animated particles */}
+      {[...Array(16)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            width: i % 3 === 0 ? 4 : 2,
+            height: i % 3 === 0 ? 4 : 2,
+            backgroundColor: GREEN,
+            left: `${10 + (i * 73) % 82}%`,
+            top: `${5 + (i * 47) % 88}%`,
+            opacity: 0.5,
+          }}
+          animate={{
+            y: [-8, 8, -8],
+            opacity: [0.2, 0.8, 0.2],
+          }}
+          transition={{
+            duration: 2 + (i % 4) * 0.7,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.18,
+          }}
+        />
+      ))}
+
+      {/* Horizontal scan line */}
+      <motion.div
+        className="absolute left-0 right-0 h-px opacity-30 pointer-events-none"
+        style={{ background: `linear-gradient(to right, transparent, ${GREEN}, transparent)` }}
+        animate={{ top: ["10%", "90%", "10%"] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+      />
+    </div>
+  );
+}
+
+export function Hero() {
+  return (
+    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      {/* Background grid + glows */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4ade8012_1px,transparent_1px),linear-gradient(to_bottom,#4ade8012_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-green-500/15 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-green-400/8 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_80%_40%_at_50%_100%,#4ade8008,transparent)] pointer-events-none" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-4 items-center">
+
+          {/* Text Content */}
+          <div className="text-center lg:text-left pt-10 lg:pt-0">
+            <FadeIn delay={0.1}>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-sm font-medium mb-6">
+                <Zap className="w-4 h-4" />
+                <span>The Future of Auto Care</span>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6">
+                Connect Your Vehicle to the{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">
+                  Best Services
+                </span>
+              </h1>
+            </FadeIn>
+
+            <FadeIn delay={0.3}>
+              <p className="text-lg sm:text-xl text-gray-400 mb-10 max-w-2xl mx-auto lg:mx-0">
+                CarConnect helps you find trusted automobile services, spare parts, and accessories near you.
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.4}>
+              <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                <motion.button
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="relative w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-black bg-green-400 hover:bg-green-300 transition-colors shadow-[0_0_24px_rgba(74,222,128,0.5)] hover:shadow-[0_0_36px_rgba(74,222,128,0.75)] flex items-center justify-center gap-2 group"
+                >
+                  Explore Services
+                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="relative w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-green-400 border border-green-500/50 hover:border-green-400 hover:bg-green-400/10 transition-all shadow-[0_0_12px_rgba(74,222,128,0.1)] hover:shadow-[0_0_24px_rgba(74,222,128,0.3)]"
+                >
+                  Become a Dealer
+                </motion.button>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.6} className="mt-12 flex items-center justify-center lg:justify-start gap-8">
+              <div className="flex -space-x-3">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="w-10 h-10 rounded-full border-2 border-black bg-zinc-700 overflow-hidden">
+                    <img src={`https://i.pravatar.cc/80?img=${i + 10}`} alt="User" className="w-full h-full object-cover" />
+                  </div>
+                ))}
+              </div>
+              <div>
+                <div className="flex items-center gap-0.5 text-green-400">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm text-white font-medium mt-1">Trusted by 10,000+ users</p>
+              </div>
+            </FadeIn>
+          </div>
+
+          {/* Animated 3D-style car */}
+          <div className="relative h-[340px] sm:h-[440px] lg:h-[560px] w-full">
+            <AnimatedCar />
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-10" />
+    </section>
+  );
+}

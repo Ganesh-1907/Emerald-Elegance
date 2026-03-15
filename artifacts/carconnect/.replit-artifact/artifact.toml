@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "CarConnect"
+version = "1.0.0"
+id = "artifacts/carconnect"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+localPort = 23259
+name = "web"
+paths = ["/"]
+
+[services.development]
+run = "pnpm --filter @workspace/carconnect run dev"
+
+[services.env]
+PORT = "23259"
+BASE_PATH = "/"
+
+[services.production]
+build = ["pnpm", "--filter", "@workspace/carconnect", "run", "build"]
+publicDir = "artifacts/carconnect/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
