@@ -4,27 +4,28 @@ import { FadeIn } from "@/components/animations/FadeIn";
 
 function AnimatedCar() {
   const GREEN = "#4ade80";
+  const carImage = "/images/cars/lamborghini-45deg.png";
 
   return (
     <div className="relative w-full h-full flex items-center justify-center select-none">
       {/* Rotating outer halos */}
       <motion.div
         className="absolute"
-        style={{ width: "90%", aspectRatio: "1" }}
+        style={{ width: "95%", aspectRatio: "1" }}
         animate={{ rotate: 360 }}
         transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
       >
-        <svg viewBox="0 0 400 400" className="w-full h-full opacity-20">
+        <svg viewBox="0 0 400 400" className="w-full h-full opacity-25">
           <ellipse cx="200" cy="200" rx="195" ry="80" fill="none" stroke={GREEN} strokeWidth="1" strokeDasharray="8 6" />
         </svg>
       </motion.div>
       <motion.div
         className="absolute"
-        style={{ width: "70%", aspectRatio: "1" }}
+        style={{ width: "75%", aspectRatio: "1" }}
         animate={{ rotate: -360 }}
         transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
       >
-        <svg viewBox="0 0 400 400" className="w-full h-full opacity-15">
+        <svg viewBox="0 0 400 400" className="w-full h-full opacity-20">
           <ellipse cx="200" cy="200" rx="195" ry="65" fill="none" stroke={GREEN} strokeWidth="1" strokeDasharray="4 10" />
         </svg>
       </motion.div>
@@ -33,141 +34,51 @@ function AnimatedCar() {
       <div
         className="absolute rounded-full"
         style={{
-          width: "55%",
+          width: "60%",
           aspectRatio: "1",
-          background: `radial-gradient(circle, ${GREEN}18 0%, transparent 70%)`,
-          filter: "blur(30px)",
+          background: `radial-gradient(circle, ${GREEN}22 0%, transparent 70%)`,
+          filter: "blur(40px)",
         }}
       />
 
-      {/* The main SVG car */}
+      {/* The main Car Image - with Seamless Blending to remove square edges */}
       <motion.div
-        className="relative z-10"
-        style={{ width: "95%", maxWidth: 560 }}
+        className="relative z-10 w-full flex justify-center"
         animate={{ y: [-10, 10, -10] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       >
-        <svg
-          viewBox="0 0 560 220"
-          className="w-full h-auto"
-          style={{ filter: `drop-shadow(0 0 14px ${GREEN}80) drop-shadow(0 0 30px ${GREEN}40)` }}
-        >
-          {/* === CAR BODY === */}
-          {/* Lower body */}
-          <path
-            d="M60 148 Q60 160 75 160 L485 160 Q500 160 500 148 L500 120 L60 120 Z"
-            fill={`${GREEN}08`}
-            stroke={GREEN}
-            strokeWidth="1.5"
-          />
-          {/* Upper cabin */}
-          <path
-            d="M160 120 Q175 80 200 72 L380 72 Q415 72 420 120 Z"
-            fill={`${GREEN}10`}
-            stroke={GREEN}
-            strokeWidth="1.5"
-          />
-          {/* Front hood */}
-          <path
-            d="M420 120 L420 108 Q460 100 500 120 Z"
-            fill={`${GREEN}08`}
-            stroke={GREEN}
-            strokeWidth="1.5"
-          />
-          {/* Rear trunk */}
-          <path
-            d="M160 120 L160 108 Q120 100 60 120 Z"
-            fill={`${GREEN}08`}
-            stroke={GREEN}
-            strokeWidth="1.5"
-          />
-
-          {/* === WINDSHIELD & WINDOWS === */}
-          {/* Front windshield */}
-          <path
-            d="M380 72 Q410 72 420 108 L370 108 Z"
-            fill={`${GREEN}14`}
-            stroke={GREEN}
-            strokeWidth="1"
-          />
-          {/* Front side window */}
-          <rect x="310" y="76" width="58" height="44" rx="3" fill={`${GREEN}14`} stroke={GREEN} strokeWidth="1" />
-          {/* Rear side window */}
-          <rect x="200" y="74" width="104" height="46" rx="3" fill={`${GREEN}14`} stroke={GREEN} strokeWidth="1" />
-          {/* Rear windshield */}
-          <path
-            d="M160 108 L170 108 L200 74 L200 108 Z"
-            fill={`${GREEN}14`}
-            stroke={GREEN}
-            strokeWidth="1"
-          />
-
-          {/* === BODY PANEL LINES === */}
-          <line x1="60" y1="132" x2="500" y2="132" stroke={GREEN} strokeWidth="0.8" opacity="0.5" />
-          <line x1="160" y1="120" x2="420" y2="120" stroke={GREEN} strokeWidth="0.8" opacity="0.5" />
-
-          {/* === HEADLIGHTS === */}
-          <path d="M496 122 L510 126 L510 136 L496 138 Z" fill={`${GREEN}30`} stroke={GREEN} strokeWidth="1.5" />
-          <motion.path
-            d="M510 126 L540 118 L540 146 L510 136 Z"
-            fill={`${GREEN}15`}
-            stroke={GREEN}
-            strokeWidth="0.8"
-            animate={{ opacity: [0.4, 1, 0.4] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
-
-          {/* === TAILLIGHTS === */}
-          <rect x="50" y="124" width="12" height="18" rx="2" fill={`${GREEN}25`} stroke={GREEN} strokeWidth="1.5" />
-          <motion.path
-            d="M50 128 L20 120 L20 148 L50 140 Z"
-            fill={`${GREEN}10`}
-            stroke={GREEN}
-            strokeWidth="0.8"
-            animate={{ opacity: [0.3, 0.8, 0.3] }}
-            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-          />
-
-          {/* === WHEELS === */}
-          {/* Front wheel */}
-          <circle cx="410" cy="160" r="32" fill={`${GREEN}08`} stroke={GREEN} strokeWidth="1.8" />
-          <circle cx="410" cy="160" r="20" fill={`${GREEN}05`} stroke={GREEN} strokeWidth="1.2" />
-          <circle cx="410" cy="160" r="5" fill={`${GREEN}30`} stroke={GREEN} strokeWidth="1.5" />
-          {/* Front wheel spokes */}
-          {[0, 60, 120, 180, 240, 300].map((deg) => (
-            <line
-              key={deg}
-              x1={410 + 5 * Math.cos((deg * Math.PI) / 180)}
-              y1={160 + 5 * Math.sin((deg * Math.PI) / 180)}
-              x2={410 + 20 * Math.cos((deg * Math.PI) / 180)}
-              y2={160 + 20 * Math.sin((deg * Math.PI) / 180)}
-              stroke={GREEN}
-              strokeWidth="1.3"
+        <div className="relative w-full max-w-[820px]">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="relative"
+          >
+            <img
+              src={carImage}
+              alt="Lamborghini SVJ"
+              className="w-full h-auto object-contain"
+              style={{ filter: 'drop-shadow(0 0 12px rgba(74,222,128,0.4)) drop-shadow(0 0 28px rgba(74,222,128,0.15))' }}
             />
-          ))}
+          </motion.div>
+          
+          {/* Subtle floor reflection/glow */}
+          <div 
+            className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4/5 h-4 rounded-[100%] opacity-20"
+            style={{ background: `radial-gradient(circle, ${GREEN}, transparent 80%)`, filter: 'blur(8px)' }}
+          />
 
-          {/* Rear wheel */}
-          <circle cx="150" cy="160" r="32" fill={`${GREEN}08`} stroke={GREEN} strokeWidth="1.8" />
-          <circle cx="150" cy="160" r="20" fill={`${GREEN}05`} stroke={GREEN} strokeWidth="1.2" />
-          <circle cx="150" cy="160" r="5" fill={`${GREEN}30`} stroke={GREEN} strokeWidth="1.5" />
-          {[0, 60, 120, 180, 240, 300].map((deg) => (
-            <line
-              key={deg}
-              x1={150 + 5 * Math.cos((deg * Math.PI) / 180)}
-              y1={160 + 5 * Math.sin((deg * Math.PI) / 180)}
-              x2={150 + 20 * Math.cos((deg * Math.PI) / 180)}
-              y2={160 + 20 * Math.sin((deg * Math.PI) / 180)}
-              stroke={GREEN}
-              strokeWidth="1.3"
-            />
-          ))}
-
-          {/* === GROUND SHADOW === */}
-          <ellipse cx="280" cy="198" rx="210" ry="10" fill={`${GREEN}12`} />
-
-          {/* === UNDERCARRIAGE === */}
-          <rect x="85" y="156" width="390" height="8" rx="3" fill={`${GREEN}06`} stroke={GREEN} strokeWidth="1" opacity="0.6" />
-        </svg>
+          {/* Label for single car */}
+          <div className="absolute -bottom-16 left-0 right-0 text-center">
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="text-[10px] uppercase tracking-[0.5em] text-primary/80 font-bold"
+            >
+              Holographic Analysis: LP-770 Active
+            </motion.span>
+          </div>
+        </div>
       </motion.div>
 
       {/* Animated particles */}
