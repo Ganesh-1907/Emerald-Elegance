@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Menu, X, Car } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -21,24 +21,35 @@ export function Navbar() {
     { name: "Products", href: "#products" },
     { name: "Dealers", href: "#dealers" },
     { name: "About", href: "#about" },
+    { name: "Become a Partner", href: "#become-partner" },
   ];
+
+  const scrollToContact = () => {
+    const contactForm = document.getElementById("partnership-form");
+    if (contactForm) {
+      contactForm.scrollIntoView({ behavior: "smooth" });
+    }
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-black/80 backdrop-blur-md border-b border-white/5 py-4" : "bg-transparent py-6"
+        isScrolled ? "bg-black/80 backdrop-blur-md border-b border-white/5 py-2" : "bg-transparent py-6"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
         <div className="flex items-center justify-between">
           
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/30 group-hover:shadow-[0_0_15px_rgba(74,222,128,0.4)] transition-all">
-              <Car className="w-5 h-5 text-primary" />
-            </div>
-            <span className="font-display font-bold text-xl tracking-tight text-white">
-              Car<span className="text-primary">Connect</span>
+            <img 
+              src="/images/logo-icon.png" 
+              alt="MotoNode Logo" 
+              className="h-20 w-auto object-contain"
+            />
+            <span className="font-display font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors">
+              Moto<span className="text-primary">Node</span>
             </span>
           </Link>
 
@@ -57,11 +68,8 @@ export function Navbar() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-4">
-            {/* <Button variant="ghost" className="hidden lg:inline-flex" onClick={() => alert("Login clicked")}>
-              Log in
-            </Button> */}
-            <Button onClick={() => alert("Download clicked")}>
-              Download App
+            <Button onClick={scrollToContact}>
+              Contact
             </Button>
           </div>
 
@@ -96,11 +104,8 @@ export function Navbar() {
                 </a>
               ))}
               <div className="w-full h-px bg-white/10 my-2" />
-              {/* <Button variant="outline" className="w-full justify-center" onClick={() => alert("Login clicked")}>
-                Log in
-              </Button> */}
-              <Button className="w-full justify-center" onClick={() => alert("Download clicked")}>
-                Download App
+              <Button className="w-full justify-center" onClick={scrollToContact}>
+                Contact
               </Button>
             </div>
           </motion.div>

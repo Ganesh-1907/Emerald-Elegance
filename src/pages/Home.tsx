@@ -4,7 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
 import { Products } from "@/components/sections/Products";
 import { Dealers } from "@/components/sections/Dealers";
-import { Timeline } from "@/components/sections/Timeline";
+import { BecomePartnerSection } from "@/components/sections/BecomePartnerSection";
 import { Features } from "@/components/sections/Features";
 import { AppPromo } from "@/components/sections/AppPromo";
 
@@ -18,8 +18,8 @@ export default function Home() {
         <Services />
         <Products />
         <Dealers />
-        <Timeline />
         <Features />
+        <BecomePartnerSection />
         <AppPromo />
       </main>
 
