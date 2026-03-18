@@ -119,6 +119,20 @@ function AnimatedCar() {
 }
 
 export function Hero() {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background grid + glows */}
@@ -161,6 +175,7 @@ export function Hero() {
                 <motion.button
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
+                  onClick={() => scrollToSection("services")}
                   className="relative w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-black bg-green-400 hover:bg-green-300 transition-colors shadow-[0_0_24px_rgba(74,222,128,0.5)] hover:shadow-[0_0_36px_rgba(74,222,128,0.75)] flex items-center justify-center gap-2 group"
                 >
                   Explore Services
@@ -169,6 +184,7 @@ export function Hero() {
                 <motion.button
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
+                  onClick={() => scrollToSection("become-partner")}
                   className="relative w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-green-400 border border-green-500/50 hover:border-green-400 hover:bg-green-400/10 transition-all shadow-[0_0_12px_rgba(74,222,128,0.1)] hover:shadow-[0_0_24px_rgba(74,222,128,0.3)]"
                 >
                   Become a Dealer
