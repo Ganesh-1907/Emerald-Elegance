@@ -7,29 +7,68 @@ import { motion, AnimatePresence } from "framer-motion";
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -70% 0px",
+      threshold: 0,
+    };
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+    const sectionIds = ["hero", "services", "products", "dealers", "about", "become-partner"];
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const navLinks = [
-    { name: "Services", href: "#services" },
-    { name: "Products", href: "#products" },
-    { name: "Dealers", href: "#dealers" },
-    { name: "About", href: "#about" },
-    { name: "Become a Partner", href: "#become-partner" },
+    { name: "Services", id: "services" },
+    { name: "Products", id: "products" },
+    { name: "Dealers", id: "dealers" },
+    { name: "About", id: "about" },
+    { name: "Become a Partner", id: "become-partner" },
   ];
 
-  const scrollToContact = () => {
-    const contactForm = document.getElementById("partnership-form");
-    if (contactForm) {
-      contactForm.scrollIntoView({ behavior: "smooth" });
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
     setMobileMenuOpen(false);
+  };
+
+  const scrollToTop = (e: React.MouseEvent) => {
+    e.preventDefault();
+    scrollToSection("hero");
   };
 
   return (
@@ -42,7 +81,11 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group cursor-pointer">
+          <Link 
+            href="/" 
+            onClick={scrollToTop}
+            className="flex items-center gap-2 group cursor-pointer"
+          >
             <img 
               src="/images/logo-icon.png" 
               alt="MotoNode Logo" 
@@ -56,19 +99,30 @@ export function Navbar() {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                onClick={() => scrollToSection(link.id)}
+                className={`text-sm font-medium transition-all relative ${
+                  activeSection === link.id 
+                    ? "text-primary scale-110" 
+                    : "text-muted-foreground hover:text-primary"
+                }`}
               >
                 {link.name}
-              </a>
+                {activeSection === link.id && (
+                  <motion.div
+                    layoutId="navbar-active"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </button>
             ))}
           </nav>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-4">
-            <Button onClick={scrollToContact}>
+            <Button onClick={() => scrollToSection("become-partner")}>
               Contact
             </Button>
           </div>
@@ -94,17 +148,18 @@ export function Navbar() {
           >
             <div className="px-4 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.name}
-                  href={link.href}
-                  className="text-lg font-medium text-white hover:text-primary p-2"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`text-lg font-medium text-left p-2 transition-colors ${
+                    activeSection === link.id ? "text-primary bg-primary/5 rounded-lg" : "text-white hover:text-primary"
+                  }`}
                 >
                   {link.name}
-                </a>
+                </button>
               ))}
               <div className="w-full h-px bg-white/10 my-2" />
-              <Button className="w-full justify-center" onClick={scrollToContact}>
+              <Button className="w-full justify-center" onClick={() => scrollToSection("become-partner")}>
                 Contact
               </Button>
             </div>

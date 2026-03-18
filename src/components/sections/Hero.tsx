@@ -134,7 +134,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background grid + glows */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4ade8012_1px,transparent_1px),linear-gradient(to_bottom,#4ade8012_1px,transparent_1px)] bg-[size:60px_60px]" />
