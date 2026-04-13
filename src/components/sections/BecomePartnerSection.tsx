@@ -36,7 +36,7 @@ export function BecomePartnerSection() {
       `*Business Name:* ${formData.businessName}%0A` +
       `*Business Description:* ${formData.businessDescription}`;
     
-    window.open(`https://wa.me/919014366645?text=${message}`, "_blank");
+    window.open(`https://wa.me/919573759696?text=${message}`, "_blank");
   };
 
   const scrollToForm = () => {

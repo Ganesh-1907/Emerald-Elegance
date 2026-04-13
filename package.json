@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:seo": "vite --mode seo",
     "build": "vite build",
+    "build:seo": "vite build --mode seo",
     "serve": "vite preview",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },

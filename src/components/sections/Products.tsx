@@ -33,8 +33,9 @@ export function Products() {
                 <div className="absolute inset-0 bg-black/60 z-10 group-hover:bg-black/40 transition-colors duration-500" />
                 <img 
                   src={`${import.meta.env.BASE_URL}images/${cat.image}`} 
-                  alt={cat.name}
+                  alt={`${cat.name} available on Moto Node`}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 z-20 p-6 flex flex-col justify-end bg-gradient-to-t from-black via-black/50 to-transparent">
                   {/* <p className="text-primary font-medium mb-1 text-sm">{cat.items}</p> */}

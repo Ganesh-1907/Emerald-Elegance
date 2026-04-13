@@ -1,0 +1,20 @@
+# Robots.txt for Moto Node
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /user/account/
+Disallow: /user/settings/
+
+# Crawl-delay
+Crawl-delay: 1
+
+Host: motonode.in
+
+# Sitemap locations
+Sitemap: https://motonode.in/sitemap.xml
+Sitemap: https://motonode.in/sitemap-pages.xml
+Sitemap: https://motonode.in/sitemap-mobile.xml

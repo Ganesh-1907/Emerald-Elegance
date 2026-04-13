@@ -5,7 +5,7 @@ import { Apple, Play } from "lucide-react";
 export function AppPromo() {
 
   return (
-    <section className="py-24 bg-zinc-950/50 border-t border-white/5 overflow-hidden">
+    <section className="py-24 border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-gradient-to-r from-black to-zinc-900 border border-white/10 rounded-3xl p-8 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 relative overflow-hidden">
           
@@ -46,8 +46,11 @@ export function AppPromo() {
                 <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full -z-10" />
                 <img 
                   src="/images/app-mockup.png" 
-                  alt="MotoNode Mobile App" 
+                  alt="Moto Node mobile app preview for services and spare parts" 
                   className="w-full max-w-sm drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                  width="420"
+                  height="840"
+                  loading="lazy"
                 />
               </div>
             </FadeIn>

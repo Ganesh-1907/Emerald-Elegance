@@ -11,7 +11,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="py-24 bg-zinc-950/50 border-t border-white/5 relative">
+    <section id="services" className="pt-14 pb-24 md:pt-16 border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <FadeIn>
@@ -29,16 +29,20 @@ export function Services() {
             <FadeIn className="h-full">
               <div className="relative group h-full">
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-transparent rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
-                <div className="relative rounded-2xl overflow-hidden border border-white/10 h-full min-h-[400px]">
+                <div className="relative rounded-2xl overflow-hidden border border-white/10 h-full min-h-[400px] bg-black">
                   <img 
-                    src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1200&auto=format&fit=crop" 
-                    alt="Professional Car Maintenance" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    src="/images/services.png" 
+                    alt="Professional car maintenance service by Moto Node" 
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    width="2048"
+                    height="2048"
+                    loading="eager"
+                    fetchPriority="high"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6">
                     <p className="text-sm font-semibold text-white/90">
-                      Expert mechanics at work ensuring your vehicle's peak performance.
+                      Expert mechanics at work ensuring your vehicle&apos;s peak performance.
                     </p>
                   </div>
                 </div>

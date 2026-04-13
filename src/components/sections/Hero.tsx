@@ -55,9 +55,13 @@ function AnimatedCar() {
           >
             <img
               src={carImage}
-              alt="Lamborghini SVJ"
+              alt="Moto Node luxury performance car showcase"
               className="w-full h-auto object-contain"
               style={{ filter: 'drop-shadow(0 0 12px rgba(74,222,128,0.4)) drop-shadow(0 0 28px rgba(74,222,128,0.15))' }}
+              width="820"
+              height="460"
+              loading="eager"
+              fetchPriority="high"
             />
           </motion.div>
           
@@ -166,7 +170,7 @@ export function Hero() {
 
             <FadeIn delay={0.3}>
               <p className="text-lg sm:text-xl text-gray-400 mb-10 max-w-2xl mx-auto lg:mx-0">
-                CarConnect helps you find trusted automobile services, spare parts, and accessories near you.
+                Welcome to Moto Node, India's 1st Automobile Super App for spare parts, vehicle services, community connections, and unforgettable ride experiences.
               </p>
             </FadeIn>
 
@@ -196,7 +200,14 @@ export function Hero() {
               <div className="flex -space-x-3">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="w-10 h-10 rounded-full border-2 border-black bg-zinc-700 overflow-hidden">
-                    <img src={`https://i.pravatar.cc/80?img=${i + 10}`} alt="User" className="w-full h-full object-cover" />
+                    <img
+                      src={`https://i.pravatar.cc/80?img=${i + 10}`}
+                      alt="Moto Node rider community member"
+                      className="w-full h-full object-cover"
+                      width="40"
+                      height="40"
+                      loading="lazy"
+                    />
                   </div>
                 ))}
               </div>

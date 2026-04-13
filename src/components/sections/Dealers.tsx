@@ -13,7 +13,7 @@ const dealerTypes = [
 
 export function Dealers() {
   return (
-    <section id="dealers" className="py-24 bg-zinc-950/80 border-y border-white/5 relative overflow-hidden">
+    <section id="dealers" className="py-24 border-y border-white/5 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -25,7 +25,7 @@ export function Dealers() {
                 Our Verified <span className="text-primary">Dealer Network</span>
               </h2>
               <p className="text-muted-foreground text-lg mb-8">
-                We partner with the best in the business. Every dealer and workshop on CarConnect goes through a strict verification process to ensure you get top-tier service.
+                We partner with the best in the business. Every dealer and workshop on Moto Node goes through a strict verification process to help you discover dependable automobile support.
               </p>
             </FadeIn>
 
@@ -44,12 +44,14 @@ export function Dealers() {
           <div className="relative">
             <FadeIn delay={0.2} direction="right">
               <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/3]">
-                {/* using unsplash for a premium garage photo */}
-                {/* premium modern clean auto workshop garage */}
                 <img 
-                  src="https://images.unsplash.com/photo-1613214149922-f1809c99b414?w=1200&h=900&fit=crop" 
-                  alt="Modern Auto Workshop" 
+                  src="/images/dealer-network.png" 
+                  alt="Verified Moto Node dealer workshop network" 
                   className="w-full h-full object-cover"
+                  width="2048"
+                  height="2048"
+                  loading="eager"
+                  fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-8">
                   <div className="glass-panel p-6 rounded-xl border border-white/10 w-full backdrop-blur-md">

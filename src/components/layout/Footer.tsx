@@ -1,5 +1,6 @@
 import { Link } from "wouter";
-import { Twitter, Instagram, Facebook, Youtube, Mail, MapPin, Phone } from "lucide-react";
+import { Instagram, Mail, MapPin, Phone, MessageCircle } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 export function Footer() {
   return (
@@ -15,24 +16,33 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-1.5 cursor-pointer group">
               <img 
                 src="/images/logo-icon.png" 
-                alt="MotoNode Logo" 
+                alt="Moto Node automobile super app logo" 
                 className="h-20 w-auto object-contain"
+                width="160"
+                height="160"
               />
               <span className="font-display font-bold text-2xl tracking-tight text-white group-hover:text-primary transition-colors">
                 Moto<span className="text-primary">Node</span>
               </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              The ultimate platform connecting vehicle owners with top-rated services, premium parts, and trusted dealers nationwide.
+              India's 1st Automobile Super App connecting vehicle owners with services, spare parts, dealer support, and rider community experiences.
             </p>
             <div className="flex items-center gap-4">
               {[
-                { Icon: Twitter, href: "#" },
-                { Icon: Instagram, href: "https://www.instagram.com/moto.node?igsh=MWNoYmdqMG1yaXZxZw==" },
-                { Icon: Facebook, href: "#" },
-                { Icon: Youtube, href: "#" }
+                { Icon: Instagram, href: siteConfig.sameAs[0], label: "Instagram" },
+                { Icon: Mail, href: `mailto:${siteConfig.contact.email}`, label: "Email" },
+                { Icon: Phone, href: `tel:${siteConfig.contact.phoneE164}`, label: "Call" },
+                { Icon: MessageCircle, href: "https://wa.me/919573759696", label: "WhatsApp" },
               ].map((item, i) => (
-                <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary/20 hover:text-primary transition-all hover:-translate-y-1">
+                <a
+                  key={i}
+                  href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  aria-label={item.label}
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-muted-foreground hover:bg-primary/20 hover:text-primary transition-all hover:-translate-y-1"
+                >
                   <item.Icon className="w-4 h-4" />
                 </a>
               ))}
@@ -43,12 +53,18 @@ export function Footer() {
           <div>
             <h3 className="text-white font-display font-semibold text-lg mb-6">Explore</h3>
             <ul className="space-y-4">
-              {["Car Services", "Bike Maintenance", "Spare Parts", "Accessories", "Find Dealers"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors flex items-center gap-2">
+              {[
+                { label: "Vehicle Services", href: "/services" },
+                { label: "Spare Parts", href: "/parts" },
+                { label: "Rider Community", href: "/community" },
+                { label: "Ride Experiences", href: "/rides" },
+                { label: "Automobile Blog", href: "/blog" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className="text-muted-foreground hover:text-primary text-sm transition-colors flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary/50" />
-                    {item}
-                  </a>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -59,15 +75,20 @@ export function Footer() {
             <h3 className="text-white font-display font-semibold text-lg mb-6">Company</h3>
             <ul className="space-y-4">
               <li>
-                <a href="#become-partner" className="text-muted-foreground hover:text-primary text-sm transition-colors">
+                <Link href="/contact" className="text-muted-foreground hover:text-primary text-sm transition-colors">
                   Become a Partner
-                </a>
+                </Link>
               </li>
-              {["Become a Dealer", "Careers", "Privacy Policy", "Terms of Service"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
-                    {item}
-                  </a>
+              {[
+                { label: "Become a Dealer", href: "/contact" },
+                { label: "About Moto Node", href: "/about" },
+                { label: "Privacy Policy", href: "/privacy" },
+                { label: "Terms of Service", href: "/terms" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className="text-muted-foreground hover:text-primary text-sm transition-colors">
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -79,15 +100,19 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-muted-foreground text-sm">
                 <MapPin className="w-5 h-5 text-primary shrink-0" />
-                <span>sadasiva heavens, pedha Amberpet, hyderabad, ranga reddy dist 501505</span>
+                <span>Hyderabad, Telangana 501505</span>
               </li>
               <li className="flex items-center gap-3 text-muted-foreground text-sm">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
-                <span>9014366645</span>
+                <a href={`tel:${siteConfig.contact.phoneE164}`} className="hover:text-primary transition-colors">
+                  {siteConfig.contact.phoneDisplay}
+                </a>
               </li>
               <li className="flex items-center gap-3 text-muted-foreground text-sm">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
-                <span>motonodee@gmail.com</span>
+                <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-primary transition-colors">
+                  {siteConfig.contact.email}
+                </a>
               </li>
             </ul>
           </div>
