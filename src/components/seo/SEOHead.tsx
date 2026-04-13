@@ -182,14 +182,6 @@ export function SEOHead({
       script.text = JSON.stringify(schema);
       document.head.appendChild(script);
     });
-
-    const frame = window.requestAnimationFrame(() => {
-      document.dispatchEvent(new Event("motonode:route-rendered"));
-    });
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-    };
   }, [author, canonicalUrl, description, image, keywords, noindex, path, structuredData, title, type]);
 
   return null;
