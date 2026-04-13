@@ -25,6 +25,9 @@ interface ServiceStructuredDataInput {
 interface ProductStructuredDataInput {
   name?: string;
   description?: string;
+  lowPrice?: string;
+  highPrice?: string;
+  offerCount?: string;
 }
 
 interface GenerateMetaOptions {
@@ -132,8 +135,12 @@ export const generateStructuredData = (
         },
         offers: {
           "@type": "AggregateOffer",
+          url: `${siteConfig.url}/parts`,
           availability: "https://schema.org/InStock",
           priceCurrency: "INR",
+          lowPrice: productData.lowPrice || "100",
+          highPrice: productData.highPrice || "5000",
+          offerCount: productData.offerCount || "10",
         },
       };
     }

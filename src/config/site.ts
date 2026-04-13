@@ -85,9 +85,9 @@ export const sitePages: SitePageConfig[] = [
     key: "home",
     path: "/",
     navLabel: "Home",
-    title: "Moto Node - India's 1st Automobile Super App | Parts, Services & Community",
+    title: "Moto Node: Automobile Services, Bike Service & Car Parts",
     description:
-      "Welcome to Moto Node - India's 1st Automobile Super App. Your all-in-one destination for spare parts, vehicle services, community connections, and ride experiences.",
+      "Moto Node offers automobile services in India, bike service booking, and car parts discovery in one platform for riders, drivers, dealers, and community.",
     keywords: [
       "Moto Node",
       "automobile super app",
