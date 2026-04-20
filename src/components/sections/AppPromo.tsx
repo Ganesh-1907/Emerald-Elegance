@@ -29,7 +29,7 @@ export function AppPromo() {
                     <span className="text-base leading-none">App Store</span>
                   </div>
                 </Button>
-                <Button size="lg" className="w-full sm:w-auto h-16 px-8 gap-3 bg-zinc-800 hover:bg-zinc-700 text-white border-zinc-700" onClick={() => window.open("https://play.google.com/store", "_blank")}>
+                <Button size="lg" className="w-full sm:w-auto h-16 px-8 gap-3 bg-zinc-800 hover:bg-zinc-700 text-white border-zinc-700" onClick={() => window.open("https://play.google.com/store/apps/details?id=com.motonode", "_blank")}>
                   <Play className="w-6 h-6 text-primary" />
                   <div className="flex flex-col items-start text-left">
                     <span className="text-[10px] leading-none font-normal">GET IT ON</span>
